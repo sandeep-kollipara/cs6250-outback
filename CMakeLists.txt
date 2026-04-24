@@ -7,6 +7,12 @@ add_definitions(-std=c++17 -DBOOST_COROUTINES_NO_DEPRECATION_WARNING)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O3 -Wno-unused-result -Wno-unused-function")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mbmi -mbmi2 -mlzcnt -mpopcnt")
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+target_compile_features(your_target PUBLIC cxx_std_20)
+
 # directories
 include_directories("./")
 include_directories("deps")
