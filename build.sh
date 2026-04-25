@@ -26,5 +26,5 @@ fi
 
 mkdir build
 cd build
-cmake .. && make -j
+cmake -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON .. && make -j
 
