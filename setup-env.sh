@@ -54,7 +54,7 @@ if [ ! -d abseil-cpp ]; then #[ ! -f abseil-cpp ]; then
   git clone https://github.com/abseil/abseil-cpp.git
 fi
 #cd abseil-cpp && mkdir build && cd build && cmake .. && make -j  && sudo make install
-cd abseil-cpp && mkdir build && cd build && cmake cd abseil-cpp && mkdir build && cd build && cmake .. && make -j  && sudo make install && make -j  && sudo make install
+cd abseil-cpp && mkdir build && cd build && cmake -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON .. && make -j  && sudo make install
 find ./ -name "*.o" | xargs ar cr libabsl.a 
 sudo cp libabsl.a /usr/lib
 cd ../..
