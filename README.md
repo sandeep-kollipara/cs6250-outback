@@ -3,6 +3,21 @@ built on top of Rolex/XStore/R2..
 
 Fast and Communication-efficient Index for Key-Value Store on Disaggregated Memory.
 
+### Addendum by Sandeep Kollipara
+
+The reproduction was successful for Ubuntu 20.04 OS on r320 nodes (this branch has minor modifications for g++9/c++17 compatibility). While testing, keep the programs consistent between the server and client ends. For example, run the below commands for 'outback_server' and 'outback_client'. In case of r320 nodes, make sure to include the 'nic_idx' argument for both server and client!
+
+```
+server:
+sudo taskset -c 0 ./build/benchs/outback/server --nic_idx=0 --seconds=120 --nkeys=50000000 --mem_threads=1 --workloads=ycsbc
+```
+``` 
+client:
+sudo taskset -c 0-$((threads-1)) ./build/benchs/outback/client --nic_idx=0 --server_addr=192.168.1.X:8888 --seconds=120 --nkeys=50000000 --bench_nkeys=10000000 --coros=2 --mem_threads=1 --threads=$threads --workloads=ycsbc
+```
+
+P.S. If using CloudLab, the above setup installs OpenSM as part of nVIDIA OFED Firmware and must be deactivated to avoid the experiment being quarantined for violating the company's policies that prohibit independent SubNet managers on nodes.
+
 ### Build
 ```
 ./outback/setup_env.sh
