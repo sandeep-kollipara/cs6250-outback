@@ -15,6 +15,12 @@ sudo taskset -c 0 ./build/benchs/outback/server --nic_idx=0 --seconds=120 --nkey
 client:
 sudo taskset -c 0-$((threads-1)) ./build/benchs/outback/client --nic_idx=0 --server_addr=192.168.1.X:8888 --seconds=120 --nkeys=50000000 --bench_nkeys=10000000 --coros=2 --mem_threads=1 --threads=$threads --workloads=ycsbc
 ```
+```
+thread=sharing client:
+sudo taskset -c 0-$((threads-1)) ./build/benchs/outback/client --nic_idx=0 --server_addr=192.168.1.X:8888 --seconds=120 --nkeys=50000000 --bench_nkeys=10000000 --coros=2 --mem_threads=1 --threads=$threads --**start_threads=t** --workloads=ycsbc
+```
+
+If there are multiple clients, include an additional argument highlighted above that indicate the session id allocated by the server, e.g. for threads=4 across 3 clients: session ids 0-3, 4-7 and 8-11 need to be assigned via argument start_threads=0, 4 and 8 respectively. 'X' is the server's address.
 
 P.S. If using CloudLab, the above setup installs OpenSM as part of nVIDIA OFED Firmware and must be deactivated to avoid the experiment being quarantined for violating the company's policies that prohibit independent SubNet managers on nodes.
 
