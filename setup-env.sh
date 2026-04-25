@@ -38,7 +38,7 @@ sudo /etc/init.d/opensmd restart
 cd ..
 
 # install cmake
-cd install
+#cd install
 if [ ! -f cmake-3.16.8.tar.gz ]; then
   wget https://cmake.org/files/v3.16/cmake-3.16.8.tar.gz
 fi
@@ -50,10 +50,11 @@ cd ..
 
 # install abseil-cpp
 cd install
-if [ ! -f abseil-cpp ]; then
+if [ ! -d abseil-cpp ]; then #[ ! -f abseil-cpp ]; then
   git clone https://github.com/abseil/abseil-cpp.git
 fi
-cd abseil-cpp && mkdir build && cd build && cmake .. && make -j  && sudo make install
+#cd abseil-cpp && mkdir build && cd build && cmake .. && make -j  && sudo make install
+cd abseil-cpp && mkdir build && cd build && cmake cd abseil-cpp && mkdir build && cd build && cmake .. && make -j  && sudo make install && make -j  && sudo make install
 find ./ -name "*.o" | xargs ar cr libabsl.a 
 sudo cp libabsl.a /usr/lib
 cd ../..
