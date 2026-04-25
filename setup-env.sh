@@ -66,7 +66,8 @@ fi
 cd /usr/src/gtest
 sudo cmake .
 sudo make
-sudo cp /usr/src/gtest/lib/libgtest*.a /usr/local/lib/
+#sudo cp /usr/src/gtest/lib/libgtest*.a /usr/local/lib/
+sudo cp /usr/src/gtest/libgtest*.a /usr/local/lib/
 sudo cp -r /usr/src/gtest/include/gtest /usr/local/include/
 
 # config huge page
